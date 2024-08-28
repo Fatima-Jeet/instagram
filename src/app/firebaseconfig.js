@@ -1,7 +1,8 @@
 // firebaseConfig.js
+"use client";
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { getAnalytics } from 'firebase/analytics';
+
 
 // Replace with your Firebase project configuration
 const firebaseConfig = {
@@ -17,6 +18,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const firestore = getFirestore(app);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 
 export { firestore };
