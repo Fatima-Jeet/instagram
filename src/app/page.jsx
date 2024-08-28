@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+"use client";import React, { useState, useEffect } from 'react';
 import { firestore } from './firebaseconfig'; // Adjust the import path
 import { collection, addDoc } from 'firebase/firestore'; // Import the necessary functions
 import { FaFacebookSquare } from "react-icons/fa";
