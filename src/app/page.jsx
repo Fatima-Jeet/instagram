@@ -4,6 +4,8 @@ import { firestore } from './firebaseconfig'; // Adjust the import path
 import { collection, addDoc } from 'firebase/firestore'; // Import the necessary functions
 import { FaFacebookSquare } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import footer from "../../public/footer.png"
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -114,6 +116,18 @@ export default function Login() {
         <a href="#" className="text-blue-500 text-sm font-medium">
           Sign up
         </a>
+      </div>
+      <div className="bg-white p-4 rounded-md max-w-xs w-full mt-4 text-center">
+        <span className="text-sm">By continuing, you agree to Instagram&apos;s <span className='font-semibold'>Terms of Use</span> and <span className='font-semibold'>Privacy Policy.</span></span>
+        
+         
+      </div>
+      <div className='w-full bg-gray-100 h-full bottom-0 '>
+        <hr className='h-[1px] w-full bg-black'></hr>
+        <div className='flex items-center justify-center'>
+        <Image src={footer} alt='' width={'100%'} height={40}/>
+        </div>
+       
       </div>
     </div>
   );
