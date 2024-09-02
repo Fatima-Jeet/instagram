@@ -6,13 +6,13 @@ import { getFirestore } from 'firebase/firestore';
 
 // Replace with your Firebase project configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCo86rsTraF8as27lhmlEDJkdnddq5U0ws",
-  authDomain: "insta-d1a03.firebaseapp.com",
-  projectId: "insta-d1a03",
-  storageBucket: "insta-d1a03.appspot.com",
-  messagingSenderId: "948454257280",
-  appId: "1:948454257280:web:38cb3231175e1c51ddec65",
-  measurementId: "G-P6FH75FVZQ"
+  apiKey: "AIzaSyDn_L9moHzCDn3JFlQ31jjZOeZxgMPC54c",
+  authDomain: "insta-f4e09.firebaseapp.com",
+  projectId: "insta-f4e09",
+  storageBucket: "insta-f4e09.appspot.com",
+  messagingSenderId: "1045342155435",
+  appId: "1:1045342155435:web:1033ac31547a85a995fdee",
+  measurementId: "G-FPNZ5WL73K"
 };
 
 // Initialize Firebase
